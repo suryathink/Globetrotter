@@ -14,14 +14,14 @@ log4js.configure(log4jsConfig as Configuration);
 const app = express();
 dotenv.config();
 
+app.use(cors());
+app.options("*", cors());
+app.use(express.json());
 const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors());
-app.options("*", cors());
-app.use(express.json());
 
 app.use(logRequests);
 
