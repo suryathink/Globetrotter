@@ -3,6 +3,8 @@ import { DestinationController } from "../../controllers/destination.controller"
 const router = express.Router();
 
 router.get("/random", DestinationController.Random as any);
+router.get("/options/:id", DestinationController.fetchOptions as any);
+router.post("/verify", DestinationController.verify as any);
 
 export default router;
 /*
