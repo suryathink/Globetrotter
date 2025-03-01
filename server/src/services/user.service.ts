@@ -5,7 +5,7 @@ export class UserService {
     if (!username) {
       return {
         isError: true,
-        message: "Username already taken",
+        message: "Username not found",
       };
     }
 
@@ -26,7 +26,6 @@ export class UserService {
       data: newUser,
     };
 
-    // res.status(201).json(newUser);
   }
 
   public static async verifyUsername(username: string) {
@@ -34,12 +33,12 @@ export class UserService {
 
     if (!user) {
       return {
-        isError: false,
+        isError: true,
         message: "User not found",
       };
     } else {
       return {
-        isError: true,
+        isError: false,
         data: user,
       };
     }
