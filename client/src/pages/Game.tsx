@@ -44,7 +44,7 @@ const Game: React.FC = () => {
       // Get random destination with clues
       //   const destResponse = await axios.get('/api/destinations/random');
       const destResponse = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/destination/random`
+        `${import.meta.env.VITE_BACKEND_BASE_URL}/destination/random`
       );
       const newDestination = destResponse.data.data;
       setDestination(newDestination);
@@ -53,7 +53,7 @@ const Game: React.FC = () => {
 
       // Get options including the correct answer
       const optionsResponse = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/destination/options/${
+        `${import.meta.env.VITE_BACKEND_BASE_URL}/destination/options/${
           newDestination.id
         }`
       );
@@ -78,7 +78,7 @@ const Game: React.FC = () => {
         console.log("destination.id",destination.id)
         console.log("optionId",optionId)
       const response = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/destination/verify`,
+        `${import.meta.env.VITE_BACKEND_BASE_URL}/destination/verify`,
         {
           destinationId: destination.id,
           answerId: optionId,
@@ -150,7 +150,6 @@ const Game: React.FC = () => {
                   <p className="text-sm text-gray-600">Score</p>
                   <p className="font-bold">
                     <span className="text-green-600">
-                        {/* {console.log(currentUser)} */}
                       {currentUser?.score?.correct}
                     </span>{" "}
                     /
@@ -174,7 +173,6 @@ const Game: React.FC = () => {
 
               {/* Options */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                {console.log(options?.data)}
                 {options?.data?.map((option) => (
                   <button
                     key={option.id}
@@ -186,7 +184,7 @@ const Game: React.FC = () => {
                           ? "bg-green-100 border-2 border-green-500"
                           : "bg-red-100 border-2 border-red-500"
                         : feedback &&
-                          feedback.data.correctAnswer.city === option.city
+                          feedback?.data?.correctAnswer?.city === option.city
                         ? "bg-green-100 border-2 border-green-500"
                         : selectedOption
                         ? "bg-gray-100 opacity-70"
@@ -242,8 +240,8 @@ const Game: React.FC = () => {
                     </h3>
                     <p className="text-gray-700">
                       {feedback.correct
-                        ? `You know your way around ${feedback.data.correctAnswer.city}!`
-                        : `The correct answer was ${feedback.data.correctAnswer.city}, ${feedback.data.correctAnswer.country}.`}
+                        ? `You know your way around ${feedback?.data?.correctAnswer?.city}!`
+                        : `The correct answer was ${feedback?.data?.correctAnswer?.city}, ${feedback?.data?.correctAnswer?.country}.`}
                     </p>
                   </div>
                 </div>

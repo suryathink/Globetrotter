@@ -78,7 +78,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/user`,
+        `${import.meta.env.VITE_BACKEND_BASE_URL}/user`,
         { username }
       );
       //   const response = await axios.post('/api/users', { username });
@@ -110,7 +110,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
     try {
       const response = await axios.patch(
-        `${import.meta.env.VITE_BASE_URL}/user/${currentUser.username}/score`,
+        `${import.meta.env.VITE_BACKEND_BASE_URL}/user/${currentUser.username}/score`,
         {
           correct: isCorrect,
         }

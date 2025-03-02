@@ -26,7 +26,7 @@ const Challenge: React.FC = () => {
       if (!username) return;
       
       try {
-        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/user/${username}`);
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_BASE_URL}/user/${username}`);
         setChallengeUser(response.data.data);
       } catch (err) {
         console.error('Error fetching user:', err);
