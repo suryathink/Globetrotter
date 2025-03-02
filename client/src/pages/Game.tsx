@@ -163,7 +163,9 @@ const Game: React.FC = () => {
                 {options.map((option) => (
                   <button
                     key={option?.id || option?._id}
-                    onClick={() => handleAnswer((option?.id || option?._id) as string)}
+                    onClick={() =>
+                      handleAnswer((option?.id || option?._id) as string)
+                    }
                     disabled={!!selectedOption}
                     className={`p-4 rounded-md text-left transition-all ${
                       selectedOption === option.id
@@ -229,10 +231,10 @@ const Game: React.FC = () => {
                 </div>
                 <button
                   onClick={fetchNewQuestion}
-                  className="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                  className="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 flex items-center justify-center gap-2"
                 >
-                  <RefreshCw className="mr-2" size={18} />
-                  Next Destination
+                  <RefreshCw size={18} />
+                  <span>Next Destination</span>
                 </button>
               </div>
             )}
