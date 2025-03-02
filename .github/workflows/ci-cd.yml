@@ -24,7 +24,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t suryathink/globetrotter:latest .
+          docker build -t suryathink/globetrotter:latest ./server/Dockerfile .
 
       - name: Validate Build
         run: |
