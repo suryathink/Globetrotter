@@ -39,42 +39,38 @@ Globetrotter Challenge is an interactive web application that tests your knowled
 1. Clone the repository:
 
    ```
-   git clone <repository-url>
+   git clone https://github.com/suryathink/Globetrotter
    cd globetrotter-challenge
    ```
 
-2. Install dependencies:
+2. Navigate inside server folder
+   ```
+   cd server
+   ```
+3. Install dependencies:
 
    ```
    npm install
-   ```
-
-3. Set up environment variables:
-   Create a `.env` file in the root directory with the following variables:
-
-   ```
-   MONGODB_URI=your_mongodb_connection_string
-   PORT=5000
    ```
 
 4. Start the development server:
 
    ```
    # Start the backend server
-   npm run server
+   npm run start:dev
 
-   # In a separate terminal, start the frontend
-   npm run dev
    ```
 
-5. Open your browser and navigate to `http://localhost:5173`
+5. Now open another terminal and navigate inside client folder and run the client folder
 
-### Seeding the Database
+   ```
+   # Navigate inside server folder and Start the backend server
+   cd client
+   npm run dev
 
-To populate the database with initial destinations:
+   ```
 
-1. Start the server
-2. Make a POST request to `/api/destinations/seed` (you can use tools like Postman or curl)
+6. Open your browser and navigate to `http://localhost:5173` frontend is running here
 
 ## Game Flow
 
