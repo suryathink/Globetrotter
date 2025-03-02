@@ -25,7 +25,6 @@ export class UserService {
       isError: false,
       data: newUser,
     };
-
   }
 
   public static async verifyUsername(username: string) {
@@ -50,7 +49,6 @@ export class UserService {
         isError: true,
         message: "Missing required fields",
       };
-      //   return res.status(400).json({ message: 'Missing required fields' });
     }
 
     const updateField = correct ? "score.correct" : "score.incorrect";
@@ -66,10 +64,7 @@ export class UserService {
         isError: true,
         message: "User not found",
       };
-      //   return res.status(404).json({ message: "User not found" });
     }
-
-    // res.json(user);
 
     return {
       isError: false,

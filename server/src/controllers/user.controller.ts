@@ -11,8 +11,8 @@ export class UserController {
       const response = await UserService.create(username);
 
       if (response && "isError" in response && response.isError) {
-        return res.status(httpStatus.NOT_FOUND).send({
-          statusCode: httpStatus.NOT_FOUND,
+        return res.status(httpStatus.BAD_REQUEST).send({
+          statusCode: httpStatus.BAD_REQUEST,
           message: response?.message,
           data: response?.data,
         });

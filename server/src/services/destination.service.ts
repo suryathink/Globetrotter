@@ -78,7 +78,6 @@ export class DestinationService {
         isError: true,
         message: "Missing required fields",
       };
-      // return res.status(400).json({ message: 'Missing required fields' });
     }
 
     const destination = await Destination.findById(destinationId).lean();
@@ -88,7 +87,6 @@ export class DestinationService {
         isError: true,
         message: "Destination not found",
       };
-      // return res.status(404).json({ message: 'Destination not found' });
     }
 
     const isCorrect = destination._id.toString() === answerId;
