@@ -10,6 +10,7 @@ interface Destination {
 }
 
 interface Option {
+  _id?: string;
   id: string;
   city: string;
   country: string;
@@ -173,7 +174,7 @@ const Game: React.FC = () => {
 
               {/* Options */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                {options?.data?.map((option) => (
+                {options?.data?.map((option:Option) => (
                   <button
                     key={option.id}
                     onClick={() => handleAnswer(option?._id || option?.id)}
