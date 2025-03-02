@@ -42,19 +42,20 @@ jobs:
       - name: Install SSH Client
         run: sudo apt-get install -y openssh-client
 
-      - name: Prepare and Deploy to EC2
+      - name: Decode and Save SSH Key
         env:
-          EC2_HOST: ${{ secrets.EC2_HOST }} # EC2 public IP/DNS
+          EC2_KEY_BASE64: ${{ secrets.EC2_KEY_BASE64 }}
+        run: |
+          echo "$EC2_KEY_BASE64" | base64 --decode > url-shortener-backend.pem
+          chmod 400 url-shortener-backend.pem
+
+      - name: Deploy to EC2
+        env:
+          EC2_HOST: ${{ secrets.EC2_HOST }}
           EC2_USER: ${{ secrets.EC2_USER }} # Default: "ubuntu"
-          EC2_KEY: ${{ secrets.EC2_KEY }} # SSH Private Key
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
-          # Save the private key for SSH access
-          echo "${EC2_KEY}" | sed 's/\\n/\n/g' > url-shortener-backend.pem
-          chmod 400 url-shortener-backend.pem
-
-          # SSH into EC2 and deploy the new image
           ssh -o StrictHostKeyChecking=no -i url-shortener-backend.pem ${EC2_USER}@${EC2_HOST} << 'EOF'
             echo "🔄 Logging into Docker Hub..."
             docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
@@ -63,13 +64,11 @@ jobs:
             docker pull suryathink/globetrotter:latest
 
             echo "🛑 Stopping old containers..."
-            docker-compose down
+            docker stop globetrotter-container || true
+            docker rm globetrotter-container || true
 
             echo "🧹 Cleaning up old Docker images..."
             docker system prune -af
-
-            echo "🚀 Starting the new containers..."
-            docker-compose up -d
 
             echo "🚀 Starting the new container with .env file..."
             docker run --env-file /home/ubuntu/env/.env -d --name globetrotter-container -p 4000:4000 suryathink/globetrotter:latest
