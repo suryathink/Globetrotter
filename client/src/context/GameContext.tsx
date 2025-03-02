@@ -55,7 +55,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     if (savedUser) {
       try {
         const parsedUser = JSON.parse(savedUser);
-        console.log("parsedUser",parsedUser)
+        // console.log("parsedUser",parsedUser)
         setCurrentUser(parsedUser);
         setScore(parsedUser.score);
       } catch (err) {
@@ -99,7 +99,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   };
 
   const updateScore = async (isCorrect: boolean): Promise<void> => {
-    console.log("isCorrect",isCorrect)
+    // console.log("isCorrect",isCorrect)
     if (!currentUser) return;
 
     // Update local state immediately for better UX

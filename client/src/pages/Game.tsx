@@ -49,7 +49,7 @@ const Game: React.FC = () => {
       const newDestination = destResponse.data.data;
       setDestination(newDestination);
 
-      console.log("newDestination", newDestination);
+      // console.log("newDestination", newDestination);
 
       // Get options including the correct answer
       const optionsResponse = await axios.get(
@@ -68,15 +68,15 @@ const Game: React.FC = () => {
   };
 
   const handleAnswer = async (optionId: string) => {
-    console.log("optionId",optionId)
+    // console.log("optionId",optionId)
     if (selectedOption || !destination) return;
 
     setSelectedOption(optionId);
 
     try {
 
-        console.log("destination.id",destination.id)
-        console.log("optionId",optionId)
+        // console.log("destination.id",destination.id)
+        // console.log("optionId",optionId)
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_BASE_URL}/destination/verify`,
         {
@@ -88,7 +88,7 @@ const Game: React.FC = () => {
       const result = response.data;
       setFeedback(result);
 
-      console.log("result",result)
+      // console.log("result",result)
 
       // Update score
       await updateScore(result.data.correct);

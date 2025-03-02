@@ -40,7 +40,7 @@ const Challenge: React.FC = () => {
   }, [username]);
   
   const handleShare = () => {
-    console.log("challengeUser",challengeUser)
+    // console.log("challengeUser",challengeUser)
     if (!challengeUser) return;
     
     const shareUrl = `${window.location.origin}/challenge/${challengeUser.username}`;
