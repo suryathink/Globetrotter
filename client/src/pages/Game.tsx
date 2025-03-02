@@ -192,9 +192,9 @@ const Game: React.FC = () => {
                       />
                       <div>
                         <p className="font-medium">{option.city}</p>
-                        <p className="text-sm text-gray-600">
+                        {/* <p className="text-sm text-gray-600">
                           {option.country}
-                        </p>
+                        </p> */}
                       </div>
                     </div>
                   </button>
