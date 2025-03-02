@@ -60,10 +60,7 @@ jobs:
             docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
 
             echo "🔄 Pulling the latest backend image..."
-            docker pull suryathink/url-shortener-backend:latest
-
-            echo "📂 Navigating to ~/Advanced-URL-Shortener"
-            cd ~/Advanced-URL-Shortener
+            docker pull suryathink/globetrotter:latest
 
             echo "🛑 Stopping old containers..."
             docker-compose down
@@ -73,4 +70,7 @@ jobs:
 
             echo "🚀 Starting the new containers..."
             docker-compose up -d
+
+            echo "🚀 Starting the new container with .env file..."
+            docker run --env-file /home/ubuntu/env/.env -d --name globetrotter-container -p 4000:4000 suryathink/globetrotter:latest
           EOF
