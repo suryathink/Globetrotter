@@ -92,7 +92,6 @@ To populate the database with initial destinations:
 - `GET /api/destinations/random`: Fetches a random destination with limited clues
 - `GET /api/destinations/options/:id`: Gets multiple choice options including the correct answer
 - `POST /api/destinations/verify`: Verifies the user's answer and returns feedback
-- `POST /api/destinations/seed`: Seeds the database with initial destinations (development only)
 
 ### Users
 
@@ -104,31 +103,59 @@ To populate the database with initial destinations:
 
 ```
 globetrotter-challenge/
+├── client/                  # Frontend code
+│   ├── node_modules/        # Frontend dependencies
+│   ├── public/              # Static assets
+│   ├── src/                 # Source code for React components
+│   ├── .env                 # Environment variables for frontend
+│   ├── .env.production      # Production environment variables
+│   ├── .gitignore           # Git ignore file for frontend
+│   ├── eslint.config.js     # ESLint configuration
+│   ├── index.html           # Main HTML entry point
+│   ├── output.css           # Compiled CSS (from Tailwind)
+│   ├── package.json         # Frontend dependencies
+│   ├── postcss.config.js    # PostCSS configuration
+│   ├── README.md            # Frontend documentation
+│   ├── tailwind.config.js   # Tailwind CSS configuration
+│   ├── tsconfig files       # TypeScript configuration
+│   └── vite.config.ts       # Vite bundler configuration
+│
 ├── server/                  # Backend code
-│   ├── models/              # MongoDB schemas
-│   ├── routes/              # API routes
-│   └── index.js             # Server entry point
-├── src/                     # Frontend code
-│   ├── components/          # Reusable UI components
-│   ├── context/             # React context providers
-│   ├── pages/               # Application pages
-│   └── main.tsx             # Frontend entry point
-├── .env                     # Environment variables
-├── package.json             # Project dependencies
-└── vite.config.ts           # Vite configuration
+│   ├── logs/                # Server logs
+│   ├── node_modules/        # Backend dependencies
+│   ├── src/                 # Server source code
+│   │   ├── models/          # MongoDB schemas
+│   │   └── routes/          # API routes
+│   ├── .dockerignore        # Docker ignore file
+│   ├── .env                 # Environment variables for backend
+│   ├── .gitignore           # Git ignore file for backend
+│   ├── Dockerfile           # Docker configuration
+│   ├── example.env          # Example environment variables
+│   ├── package.json         # Backend dependencies
+│   ├── tsconfig.json        # TypeScript configuration
+│   └── README.md            # Backend documentation
+│
+└── github/                  # GitHub configuration
+    └── workflows/           # CI/CD configuration files
 ```
 
-## Expanding the Dataset
+## Environment Variables
 
-The application comes with a starter dataset of destinations. To expand it:
+### Frontend (.env)
 
-1. Create a JSON file with additional destinations following the same structure
-2. Use the MongoDB import tools or create a custom import script
-3. Each destination should include:
-   - City and country
-   - Multiple clues
-   - Fun facts (shown for correct answers)
-   - Trivia (shown for incorrect answers)
+```
+VITE_BACKEND_BASE_URL=https://globetrotter.suryathink.com
+```
+
+This variable configures the base URL for API requests from the frontend to the backend service.
+
+### Backend (.env)
+
+```
+MONGO_URI=uri               # MongoDB connection string
+BASE_URL=http://localhost:4000  # Base URL for the backend server
+PORT=4000                   # Port on which the backend server runs
+```
 
 ## Deployment
 
@@ -144,14 +171,3 @@ The application comes with a starter dataset of destinations. To expand it:
    ```
    npm run build
    ```
-2. Deploy the contents of the `dist` folder to a static hosting service like Netlify, Vercel, or GitHub Pages
-
-## License
-
-[MIT License](LICENSE)
-
-## Acknowledgements
-
-- Destination data sourced and expanded using AI tools
-- Icons provided by [Lucide React](https://lucide.dev/)
-- Background images from [Unsplash](https://unsplash.com/)
